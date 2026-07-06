@@ -17,6 +17,8 @@ public class MicInput : MonoBehaviour
         if (Microphone.devices.Length == 0) return;
         mic = Microphone.devices[0];
         micClip = Microphone.Start(mic, true, 1, 44100);
+        Debug.Log("autoSimulation: " + Physics.autoSimulation);
+        Debug.Log("gravity: " + Physics.gravity);
     }
 
     void Update()
