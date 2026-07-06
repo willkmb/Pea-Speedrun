@@ -599,7 +599,7 @@ MonoBehaviour:
   horizontalRange: 5
   minDepth: -7
   maxDepth: 7
-  minHeight: 0.1
+  minHeight: 0.5
   maxHeight: 5
   heightSpeed: 5
   heightSmooth: 8
@@ -931,7 +931,7 @@ Transform:
   m_GameObject: {fileID: 1901655310}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0, z: -0.00964}
+  m_LocalPosition: {x: 0, y: -0, z: -0.00815}
   m_LocalScale: {x: -0.015551949, y: -0.0017152244, z: -0.015551949}
   m_ConstrainProportionsScale: 0
   m_Children: []
