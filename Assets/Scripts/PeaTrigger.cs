@@ -4,23 +4,27 @@ using UnityEngine;
 public class PeaTrigger : MonoBehaviour
 {
     [SerializeField] string peaTag = "Pea";
-    [SerializeField] string childName = "Highlight";
+    [SerializeField] string inSpoonLayerName = "InSpoon";
+    [SerializeField] string defaultLayerName = "Default";
+
+    private int inSpoonLayer;
+    private int defaultLayer;
+
+    void Awake()
+    {
+        inSpoonLayer = LayerMask.NameToLayer(inSpoonLayerName);
+        defaultLayer = LayerMask.NameToLayer(defaultLayerName);
+    }
 
     void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag(peaTag)) return;
-        SetHighlightChild(other, true);
+        other.gameObject.layer = inSpoonLayer;
     }
 
     void OnTriggerExit(Collider other)
     {
         if (!other.CompareTag(peaTag)) return;
-        SetHighlightChild(other, false);
-    }
-
-    void SetHighlightChild(Collider col, bool state)
-    {
-        Transform child = col.transform.Find(childName);
-        if (child != null) child.gameObject.SetActive(state);
+        other.gameObject.layer = defaultLayer;
     }
 }
