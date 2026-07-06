@@ -21,7 +21,7 @@ MonoBehaviour:
     m_Value: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 1.75
+    m_Value: 0.21
   scatter:
     m_OverrideState: 1
     m_Value: 0.5
@@ -68,7 +68,7 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.299
+    m_Value: 0.768
   smoothness:
     m_OverrideState: 1
     m_Value: 0.2
@@ -106,13 +106,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29fa0085f50d5e54f8144f766051a691, type: 3}
   m_Name: FilmGrain
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   type:
     m_OverrideState: 1
     m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.597
   response:
     m_OverrideState: 1
     m_Value: 0.8
@@ -223,7 +223,7 @@ MonoBehaviour:
   active: 1
   temperature:
     m_OverrideState: 1
-    m_Value: 8
+    m_Value: 10
   tint:
     m_OverrideState: 1
     m_Value: 8

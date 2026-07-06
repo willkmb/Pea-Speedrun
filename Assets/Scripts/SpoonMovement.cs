@@ -28,6 +28,7 @@ public class SpoonMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         tarHeight = transform.position.y;
         curHeight = transform.position.y;
+        Cursor.visible = false;
     }
 
     void Update()
