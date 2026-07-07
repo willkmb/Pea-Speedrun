@@ -10,6 +10,7 @@ public class Timer : MonoBehaviour
     [SerializeField] MicInput mic;
     [SerializeField] SpoonMovement spoon;
     [SerializeField] MenuScript menu;
+    [SerializeField] MouthTrigger mouth;
     [SerializeField] Animation tint;
     [SerializeField] Animation logo;
     [SerializeField] Animation[] texts;
@@ -33,6 +34,7 @@ public class Timer : MonoBehaviour
             EndGame();
             mic.enabled = false;
             spoon.enabled = false;
+            mouth.enabled = false;
             tint.Play("TintIn");
             logo.Play("LogoIn");
             foreach (var text in texts) text.Play();

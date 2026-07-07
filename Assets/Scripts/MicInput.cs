@@ -20,6 +20,7 @@ public class MicInput : MonoBehaviour
     [SerializeField] GameObject star;
     [SerializeField] Animation tint;
     [SerializeField] Spinner spinner;
+    [SerializeField] GameObject spinHolder;
 
     public int totalEaten = 0;
     private int maxSeen = 0;
@@ -130,7 +131,17 @@ public class MicInput : MonoBehaviour
         totalEaten++;
         if (peaText != null) peaText.text = "peas: " + totalEaten.ToString("D3");
 
-        if (isMystery) spinner.Spin();
+        if (isMystery)
+        {
+            StartCoroutine(Spinning());
+        }
+    }
+
+    IEnumerator Spinning()
+    {
+        spinHolder.GetComponent<Animation>().Play("SpinnerIn");
+        yield return new WaitForSeconds(spinHolder.GetComponent<Animation>()["SpinnerIn"].clip.length);
+        spinner.Spin();
     }
 
     IEnumerator StartThenMid()
