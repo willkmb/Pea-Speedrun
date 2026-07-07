@@ -19,6 +19,7 @@ public class MicInput : MonoBehaviour
     [SerializeField] Canvas canvas;
     [SerializeField] GameObject star;
     [SerializeField] Animation tint;
+    [SerializeField] Spinner spinner;
 
     public int totalEaten = 0;
     private int maxSeen = 0;
@@ -106,6 +107,8 @@ public class MicInput : MonoBehaviour
             wait = anim.clip != null ? anim.clip.length : 0f;
         }
 
+        bool isMystery = pea.GetComponent<IsMysteryPea>() != null;
+
         if (star != null && canvas != null)
         {
             Vector2 screenPos = Camera.main.WorldToScreenPoint(pea.transform.position);
@@ -126,6 +129,8 @@ public class MicInput : MonoBehaviour
         Destroy(pea);
         totalEaten++;
         if (peaText != null) peaText.text = "peas: " + totalEaten.ToString("D3");
+
+        if (isMystery) spinner.Spin();
     }
 
     IEnumerator StartThenMid()

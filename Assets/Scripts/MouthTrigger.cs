@@ -10,7 +10,6 @@ public class MouthTrigger : MonoBehaviour
     [SerializeField] float holdTime = 2f;
     [SerializeField] float dist = 2f;
     [SerializeField] float scale = 1.2f;
-    [SerializeField] Color newCol = Color.white;
     [SerializeField] Animation chew;
     [SerializeField] Animation tint;
     public List<GameObject> peasAtCamera = new List<GameObject>();
@@ -47,8 +46,6 @@ public class MouthTrigger : MonoBehaviour
     {
         Rigidbody rb = pea.GetComponent<Rigidbody>();
         if (rb != null) rb.isKinematic = true;
-        Renderer rend = pea.GetComponentInChildren<Renderer>();
-        if (rend != null) rend.material.SetColor("_BaseCol", newCol);
         Vector3 target = cam.ViewportToWorldPoint(new Vector3(Random.Range(0.2f, 0.8f), Random.Range(0.2f, 0.8f), dist));
         Vector3 startPos = pea.transform.position;
         Vector3 targetScale = pea.transform.localScale * scale;

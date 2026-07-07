@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
@@ -9,12 +10,19 @@ public class Timer : MonoBehaviour
     [SerializeField] MicInput mic;
     [SerializeField] SpoonMovement spoon;
     [SerializeField] MenuScript menu;
+    [SerializeField] Animation tint;
+    [SerializeField] Animation logo;
+    [SerializeField] Animation[] texts;
     private float timeLeft = 60f;
     private bool done;
 
     void Update()
     {
-        if (done) return;
+        if (done)
+        {
+            if(Input.GetKey(KeyCode.Space)) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            return;
+        }
 
         timeLeft -= Time.deltaTime;
         if (timeLeft <= 0f)
@@ -25,11 +33,14 @@ public class Timer : MonoBehaviour
             EndGame();
             mic.enabled = false;
             spoon.enabled = false;
+            tint.Play("TintIn");
+            logo.Play("LogoIn");
+            foreach (var text in texts) text.Play();
         }
 
         int seconds = Mathf.CeilToInt(timeLeft);
         text.text = seconds.ToString();
-        curScore.text = "Score: " + mic.totalEaten.ToString("D3");
+        curScore.text = "peas: " + mic.totalEaten.ToString("D3");
     }
 
     void EndGame()
@@ -43,6 +54,6 @@ public class Timer : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", highScore);
             PlayerPrefs.Save();
         }
-        hsText.text = "High Score: " + highScore.ToString("D3");
+        hsText.text = "highscore: " + highScore.ToString("D3");
     }
 }
