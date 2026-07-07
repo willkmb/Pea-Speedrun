@@ -12,8 +12,10 @@ public class MouthTrigger : MonoBehaviour
     [SerializeField] float scale = 1.2f;
     [SerializeField] Color newCol = Color.white;
     [SerializeField] Animation chew;
+    [SerializeField] Animation tint;
     public List<GameObject> peasAtCamera = new List<GameObject>();
     public int totalInMouth = 0;
+    private bool isEating = false;
     void Awake()
     {
         if (cam == null) cam = Camera.main;
@@ -21,12 +23,20 @@ public class MouthTrigger : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag(spoonTag)) return;
+        GameObject[] peasToEat = GameObject.FindGameObjectsWithTag(inSpoonTag);
+        if (peasToEat.Length == 0) return;
         foreach (var pea in GameObject.FindGameObjectsWithTag(inSpoonTag))
         {
             StartCoroutine(SuckAndHold(pea));
         }
-        chew.Play("ChewIn");
-        Invoke("playLoop", chew["ChewIn"].clip.length);
+
+        if (!isEating)
+        {
+            isEating = true;
+            chew.Play("ChewIn");
+            Invoke("playLoop", chew["ChewIn"].clip.length);
+            tint.Play("EatTintIn");
+        }
     }
 
     void playLoop()
@@ -53,5 +63,10 @@ public class MouthTrigger : MonoBehaviour
         }
         peasAtCamera.Add(pea);
         totalInMouth++;
+    }
+
+    public void FinishEating()
+    {
+        isEating = false;
     }
 }

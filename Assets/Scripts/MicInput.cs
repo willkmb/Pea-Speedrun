@@ -18,8 +18,9 @@ public class MicInput : MonoBehaviour
     [SerializeField] Animation chew;
     [SerializeField] Canvas canvas;
     [SerializeField] GameObject star;
+    [SerializeField] Animation tint;
 
-    private int totalEaten = 0;
+    public int totalEaten = 0;
     private int maxSeen = 0;
     private float targetFill = 0f;
 
@@ -75,11 +76,20 @@ public class MicInput : MonoBehaviour
                 GameObject pea = peas[0];
                 peas.RemoveAt(0);
                 StartCoroutine(EatPea(pea));
-                yield return new WaitForSeconds(wait);
 
-                if(peas.Count == 0)
+                float t = 0f;
+                while (t < wait)
+                {
+                    if (!isChewing) break;
+                    t += Time.deltaTime;
+                    yield return null;
+                }
+
+                if (peas.Count == 0)
                 {
                     chew.Play("ChewOut");
+                    tint.Play("EatTintOut");
+                    mouth.FinishEating();
                 }
             }
             else yield return null;
