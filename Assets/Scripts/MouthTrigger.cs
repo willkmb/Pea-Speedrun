@@ -50,6 +50,7 @@ public class MouthTrigger : MonoBehaviour
         Vector3 startPos = pea.transform.position;
         Vector3 targetScale = pea.transform.localScale * scale;
         Vector3 startScale = pea.transform.localScale;
+        pea.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
         float t = 0f;
         while (t < 1f)
         {
